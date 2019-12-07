@@ -9,7 +9,7 @@
 作业感悟：该算法比较古老，如果单纯从Pixel角度实现，还是较慢。 OpenCV的中值滤波基于矩阵维度操作，且有各种优化处理，速度比该算法快不少。
 """
 import cv2  # 整个code用到OpenCV的地方只有：读取图像+显示图像
-import imutils  # 其他的代码全部通过Pixel层面实现，放在imutils.py中
+import imutils
 import numpy as np
 import time
 

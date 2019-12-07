@@ -9,7 +9,7 @@
 """
 import cv2
 import numpy as np
-import imutils
+from task1 import imutils
 import time
 
 """给原图添加噪声"""
