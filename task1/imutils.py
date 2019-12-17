@@ -157,9 +157,3 @@ class Utils:
                     elif output[row, col, chan] < 0:
                         output[row, col, chan] = 0
         return np.uint8(output)
-
-
-
-
-
-
