@@ -3,6 +3,11 @@
 # @Author  : Jeff Wang
 # @Email   : jeffwang987@163.com   OR    wangxiaofeng2020@ia.ac.cn
 # @Software: PyCharm
+"""
+本次作业：实现频域的滤波，使血管图片更加清晰。
+使用算法：同态增晰、高斯滤波（或者巴特沃斯滤波）
+作业感悟：显示效果不好。我放在Lightroom手工调整图片，血管显示效果依旧不好。
+"""
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -44,7 +49,7 @@ def Homomorphic_filter(img, scale=30):
     :param scale:
     :return:
     """
-    # img = np.log(img + 0.1)
+    img = np.log(img + 0.1)
     img_fft = np.fft.fft2(img)
     img_fft_shift = np.fft.fftshift(img_fft)
     # mask = gs_filter(img_fft_shift, scale)
@@ -53,14 +58,14 @@ def Homomorphic_filter(img, scale=30):
     img_ishift = np.fft.ifftshift(img_done)
     img_ifft = np.fft.ifft2(img_ishift)
     img_back = np.abs(img_ifft)
-    # img_back = np.exp(img_back)
+    img_back = np.exp(img_back)
     return img_back
 
 
 if __name__ == "__main__":
     img1 = cv2.imread("1.jpg", 0)
     # img1 = img1[60:170, :200]
-    out1 = Homomorphic_filter(img1, 0.5)
+    out1 = Homomorphic_filter(img1, 0.2)
     plt.subplot(1, 2, 1), plt.imshow(img1, 'gray'), plt.title('img1')
     plt.subplot(1, 2, 2), plt.imshow(out1, 'gray'), plt.title('img_back1')
     plt.show()
